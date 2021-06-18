@@ -1,0 +1,213 @@
+#!/bin/bash
+
+
+ACTION="$1"
+
+DEST_DOWNLOAD=$HOME"/Applications/"
+SLIC3R_DEST_FILE="slic3r-appimage"
+SLIC3R_APPIMAGE="Slic3r.AppImage"
+CURA_DEST_FILE="ultimaker-cura-appimage"
+CURA_APPIMAGE="Ultimaker_Cura.AppImage"
+PRUSA_DEST_FILE="prusaslicer-appimage"
+PRUSA_APPIMAGE="PrusaSlicer.AppImage"
+URL="http://lliurex.net/recursos/"
+DESKTOP_ORIG="/usr/share/zero-lliurex-freecad/freecad-appimage.desktop"
+DESKTOP_DEST=$HOME"/.local/share/applications/"
+MIME_DEST=$HOME"/.local/share/mime/"
+LINK_PATH=$HOME"/.local/bin/"
+
+shift
+PACKAGE_LIST=$@
+
+case $ACTION in
+
+	getStatus)
+		
+		for ix in $PACKAGE_LIST
+		do
+			if [[ " $ix " == " ${SLIC3R_DEST_FILE} " ]];then
+
+				if [ -s ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE} ]
+				then	
+					echo 0
+				else
+					echo 1	
+				fi
+			elif [[ " $ix " == " ${CURA_DEST_FILE} " ]];then	
+				if [ -s ${DEST_DOWNLOAD}${CURA_DEST_FILE} ]
+				then	
+					echo 0
+				else
+					echo 1	
+				fi
+			elif [[ " $ix " == " ${PRUSA_DEST_FILE} " ]];then	
+				if [ -s ${DEST_DOWNLOAD}${PRUSA_DEST_FILE} ]
+				then	
+					echo 0
+				else
+					echo 1	
+				fi
+			else
+				echo "Not found"
+			fi
+		done
+			
+	;;
+
+	download)
+
+		if ! [ -d ${DEST_DOWNLOAD} ]
+		then
+			mkdir ${DEST_DOWNLOAD}
+		fi
+
+		cd ${DEST_DOWNLOAD}
+
+		for ix in $PACKAGE_LIST
+		do
+			echo $ix
+			if [[ " $ix " == " ${SLIC3R_DEST_FILE} " ]];then
+				if [ -s ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE} ]
+				then
+					rm -f ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE}
+				fi
+				echo "Downloading Slic3r Appimage..."
+				wget ${URL}${SLIC3R_APPIMAGE} -O ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE}
+			
+				if ! [ -s ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE} ]
+				then
+					echo "Error dowloading Slic3r Appimage"	
+					exit 1
+				fi
+
+			elif [[ " $ix " ==  " ${CURA_DEST_FILE} " ]];then
+				if [ -s ${DEST_DOWNLOAD}${CURA_DEST_FILE} ]
+				then
+					rm -f ${DEST_DOWNLOAD}${CURA_DEST_FILE}
+				fi
+				echo "Downloading Ultimaker-Cura.Appimage ..."
+				wget ${URL}${CURA_APPIMAGE} -O ${DEST_DOWNLOAD}${CURA_DEST_FILE}
+			
+				if ! [ -s ${DEST_DOWNLOAD}${CURA_DEST_FILE} ]
+				then
+					echo "Error downloadin Ultimaker-Cura.Appimage"	
+					exit 1
+				fi
+
+			elif [[ " $ix " == " ${PRUSA_DEST_FILE} " ]];then
+				if [ -s ${DEST_DOWNLOAD}${PRUSA_DEST_FILE} ]
+				then
+					rm -f ${DEST_DOWNLOAD}${PRUSA_DEST_FILE}
+				fi
+				echo "Downloading PrusaSlicer.Appimage ..."
+				wget ${URL}${PRUSA_APPIMAGE} -O ${DEST_DOWNLOAD}${PRUSA_DEST_FILE}
+			
+				if ! [ -s ${DEST_DOWNLOAD}${PRUSA_DEST_FILE} ]
+				then
+					echo "Error downloadin PrusaSlicer.Appimage"	
+					exit 1
+				fi
+			fi
+		done
+
+	;;	
+	
+	installPackage)
+
+		chmod +x ${DEST_DOWNLOAD}${DEST_FILE}
+		
+		if ! [ -d ${LINK_PATH} ]
+		then
+			mkdir ${LINK_PATH}
+		fi
+
+		for ix in $PACKAGE_LIST
+		do
+			if [[ " $ix " == " ${SLIC3R_DEST_FILE} " ]];then
+				echo "Preparing Slic3r Appimage..."
+				chmod +x ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE}
+				if ! [ -e ${LINK_PATH}${SLIC3R_DEST_FILE} ]
+				then
+					ln -s ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE} ${LINK_PATH}${SLIC3R_DEST_FILE}
+				fi	
+
+				echo ${SLIC3R_DEST_FILE}" is now available at appimage-manager"
+			
+			elif [[ " $ix " == " ${CURA_DEST_FILE} " ]];then
+				echo "Preparing Ulimaker-Cura Appimage..."
+				chmod +x ${DEST_DOWNLOAD}${CURA_DEST_FILE}
+				if ! [ -e ${LINK_PATH}${CURA_DEST_FILE} ]
+				then
+					ln -s ${DEST_DOWNLOAD}${CURA_DEST_FILE} ${LINK_PATH}${CURA_DEST_FILE}
+				fi	
+
+				echo ${CURA_DEST_FILE}" is now available at appimage-manager"
+			
+			elif [[ " $ix " == " ${PRUSA_DEST_FILE} " ]];then
+				echo "Preparing PrusaSlicer Appimage..."
+				chmod +x ${DEST_DOWNLOAD}${CURA_DEST_FILE}
+				if ! [ -e ${LINK_PATH}${PRUSA_DEST_FILE} ]
+				then
+					ln -s ${DEST_DOWNLOAD}${PRUSA_DEST_FILE} ${LINK_PATH}${PRUSA_DEST_FILE}
+				fi	
+
+				echo ${PRUSA_DEST_FILE}" is now available at appimage-manager"
+			fi
+		done
+
+	;;
+
+	remove)
+		
+		echo "Removing files..."
+
+		for ix in $PACKAGE_LIST
+		do
+			if [[ " $ix " == " ${SLIC3R_DEST_FILE} " ]];then
+				echo "Removing "${SLIC3R_DEST_FILE} 
+		
+				if [ -s ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE} ]
+				then
+					rm -f ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE}
+				fi
+
+				if [ -s ${DEST_DOWNLOAD}${SLIC3R_DEST_FILE} ]
+				then
+					echo "Error removing "${SLIC3R_DEST_FILE}
+	
+					exit 1
+				fi
+			elif [[ " $ix " == " ${CURA_DEST_FILE} " ]];then
+				echo "Removing "${CURA_DEST_FILE} 
+		
+				if [ -s ${DEST_DOWNLOAD}${CURA_DEST_FILE} ]
+				then
+					rm -f ${DEST_DOWNLOAD}${CURA_DEST_FILE}
+				fi
+
+				if [ -s ${DEST_DOWNLOAD}${CURA_DEST_FILE} ]
+				then	
+					echo "Error removing "${CURA_DEST_FILE}
+
+					exit 1
+				fi
+			elif [[ " $ix " == " ${PRUSA_DEST_FILE} " ]];then
+				echo "Removing "${PRUSA_DEST_FILE} 
+		
+				if [ -s ${DEST_DOWNLOAD}${PRUSA_DEST_FILE} ]
+				then
+					rm -f ${DEST_DOWNLOAD}${PRUSA_DEST_FILE}
+				fi
+
+				if [ -s ${DEST_DOWNLOAD}${PRUSA_DEST_FILE} ]
+				then
+					echo "Error removing "${PRUSA_DEST_FILE}
+					exit 1
+				fi
+			fi
+		done
+
+	;;		
+		
+esac
+exit 0
