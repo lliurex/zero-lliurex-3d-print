@@ -1,9 +1,10 @@
 {
 	"type":"file",
-	"pkg_list":[{"name":"slic3r-appimage","custom_name":"Slic3r: 3d printing tool","custom_icon":"slic3r.png"},{"name":"ultimaker-cura-appimage","custom_name":"Ultimaker Cura: 3d printing tool","custom_icon":"ultimaker_cura.png"},{"name":"prusa-slicer-appimage","custom_name":"PrusaSlicer: 3d printing tool","custom_icon":"prusaslicer.png"}],
+	"pkg_list":[{"name":"slic3r-appimage","custom_name":"Slic3r: 3d printing tool","custom_icon":"slic3r.png"},{"name":"ultimaker_cura-appimage","custom_name":"Ultimaker Cura: 3d printing tool","custom_icon":"ultimaker_cura.png"},{"name":"prusaslicer-appimage","custom_name":"PrusaSlicer: 3d printing tool","custom_icon":"prusaslicer.png"}],
 	"script":{"name":"/usr/share/zero-lliurex-3d-print/3d-print_script","remove":true,"download":true,"getStatus":true},
 	"custom_icon_path":"/usr/share/zero-lliurex-3d-print/",
 	"selection_enabled":{"active":true,"all_selected":false},
-	"zomando":"zero-lliurex-3d-print"
+	"zomando":"zero-lliurex-3d-print",
+	"check_zomando_state":false
 
 }
