@@ -1,3 +1,9 @@
+zero-lliurex-3d-print (0.1.1) bionic-updates; urgency=medium
+
+  * Removed Slic3r from epi
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 27 Jul 2021 09:18:56 +0200
+
 zero-lliurex-3d-print (0.1) bionic-updates; urgency=medium
 
   * Initial release
