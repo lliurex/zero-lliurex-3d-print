@@ -1,3 +1,9 @@
+zero-lliurex-3d-print (0.1.2) lliurex22; urgency=medium
+
+  * Allow all groups
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 14 Jun 2022 13:47:44 +0200
+
 zero-lliurex-3d-print (0.1.1) focal; urgency=medium
 
   * Fixed banner
