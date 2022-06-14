@@ -15,4 +15,4 @@ Category=Software
 ScriptPath=zero-lliurex-3d-print.zmd
 Service=False
 Locks=zero-lliurex-3d-print
-Groups=sudo;admins;teachers;students
+Groups=*;
