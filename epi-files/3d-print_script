@@ -8,15 +8,11 @@ SLIC3R_DEST_FILE="slic3r-appimage"
 SLIC3R_APPIMAGE="Slic3r-latest.AppImage"
 CURA_DEST_FILE="ultimaker_cura-appimage"
 CURA_APPIMAGE="Ultimaker_Cura-latest.AppImage"
-PRUSA_DEST_FILE="prusaslicer-appimage"
-PRUSA_APPIMAGE="PrusaSlicer-latest.AppImage"
 URL="http://lliurex.net/recursos/"
 DESKTOP_ORIG_SLIC3R="/usr/share/zero-lliurex-3d-print/slic3r-appimage.desktop"
 DESKTOP_NAME_SLIC3R="slic3r-appimage.desktop"
 DESKTOP_ORIG_CURA="/usr/share/zero-lliurex-3d-print/ultimaker_cura-appimage.desktop"
 DESKTOP_NAME_CURA="ultimaker_cura-appimage.desktop"
-DESKTOP_ORIG_PRUSA="/usr/share/zero-lliurex-3d-print/prusaslicer-appimage.desktop"
-DESKTOP_NAME_PRUSA="prusaslicer-appimage.desktop"
 DESKTOP_DEST=$HOME"/.local/share/applications/"
 MIME_DEST=$HOME"/.local/share/mime/"
 LINK_PATH=$HOME"/.local/bin/"
@@ -101,13 +97,6 @@ case $ACTION in
 				else
 					echo 1	
 				fi
-			elif [[ " $ix " == " ${PRUSA_DEST_FILE} " ]];then	
-				if [ -s ${DEST_DOWNLOAD}${PRUSA_DEST_FILE} ]
-				then	
-					echo 0
-				else
-					echo 1	
-				fi
 			else
 				echo "Not found"
 			fi
@@ -140,13 +129,6 @@ case $ACTION in
 			elif [[ " $ix " ==  " ${CURA_DEST_FILE} " ]];then
 				echo "Downlodading "${CURA_DEST_FILE}
 				res=$(download_appimage ${CURA_DEST_FILE} ${CURA_APPIMAGE})
-				if [ $res -ge 1 ];then
-					((errors=errors+1))
-				fi
-
-			elif [[ " $ix " == " ${PRUSA_DEST_FILE} " ]];then
-			 	echo "Downlodading "${PRUSA_DEST_FILE}
-				res=$(download_appimage ${PRUSA_DEST_FILE} ${PRUSA_APPIMAGE})
 				if [ $res -ge 1 ];then
 					((errors=errors+1))
 				fi
@@ -209,13 +191,6 @@ case $ACTION in
 					((errors=errors+1))
 				fi
 
-			elif [[ " $ix " == " ${PRUSA_DEST_FILE} " ]];then
-				echo "Preparing "${PRUSA_DEST_FILE}
-				res=$(install_appimage ${PRUSA_DEST_FILE} ${DESKTOP_ORIG_PRUSA} ${DESKTOP_NAME_PRUSA})
-				if [ $res -ge 1 ];then
-					((errors=errors+1))
-				fi
-
 			fi
 		done
 
@@ -253,14 +228,6 @@ case $ACTION in
 				if [ $res -ge 1 ];then
 					((errors=errors+1))
 				fi
-
-			elif [[ " $ix " == " ${PRUSA_DEST_FILE} " ]];then
-				echo "Removing "${PRUSA_DEST_FILE} 
-				res=$(remove_appimage ${PRUSA_DEST_FILE} ${DESKTOP_NAME_PRUSA})
-				if [ $res -ge 1 ];then
-					((errors=errors+1))
-				fi
-
 			fi
 		done
 
