@@ -1,3 +1,9 @@
+zero-lliurex-3d-print (0.21.2) noble; urgency=medium
+
+  * Initial release for Noble
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 18 Sep 2024 14:24:46 +0200
+
 zero-lliurex-3d-print (0.11.2) jammy; urgency=medium
 
   * Initial release for Jammy
