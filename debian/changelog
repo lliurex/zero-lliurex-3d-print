@@ -1,3 +1,9 @@
+zero-lliurex-3d-print (0.22) noble; urgency=medium
+
+  * Add creality print
+
+ -- Juanma1980 <juanma1980@gmail.com>  Wed, 02 Sep 2026 19:12:42 +0200
+
 zero-lliurex-3d-print (0.21.4) noble; urgency=medium
 
   * Added support to launch zmd with pkg name as argument
