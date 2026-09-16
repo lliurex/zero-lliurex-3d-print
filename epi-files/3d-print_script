@@ -21,7 +21,7 @@ DESKTOP_NAME_CREALITY="creality-appimage.desktop"
 DESKTOP_DEST=$HOME"/.local/share/applications/"
 MIME_DEST=$HOME"/.local/share/mime/"
 LINK_PATH=$HOME"/.local/bin/"
-source creality.url
+source /usr/share/zero-lliurex-3d-print/creality.url
 shift
 PACKAGE_LIST=$@
 
