@@ -21,7 +21,7 @@ DESKTOP_NAME_CREALITY="creality-appimage.desktop"
 DESKTOP_DEST=$HOME"/.local/share/applications/"
 MIME_DEST=$HOME"/.local/share/mime/"
 LINK_PATH=$HOME"/.local/bin/"
-source /usr/share/zero-lliurex-3d-print/creality.url
+#source /usr/share/zero-lliurex-3d-print/creality.url
 shift
 PACKAGE_LIST=$@
 
@@ -31,12 +31,7 @@ function download_appimage(){
 	then
 		rm -f ${DEST_DOWNLOAD}"$1"
 	fi
-	if [[ $1 == $CREALITY_DEST_FILE ]]
-	then
-		wget ${CREALITY_URL} -O ${DEST_DOWNLOAD}"$1"
-	else
-		wget ${URL}"$2" -O ${DEST_DOWNLOAD}"$1"
-	fi
+	wget ${URL}"$2" -O ${DEST_DOWNLOAD}"$1"
 
 	if ! [ -s ${DEST_DOWNLOAD}"$1" ]
 	then
